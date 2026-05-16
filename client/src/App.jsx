@@ -1,12 +1,13 @@
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
-import ValuePropositions from './components/ValuePropositions'; // Ya lo importamos
+import ValuePropositions from './components/ValuePropositions';
+import ProductCarousel from './components/ProductCarousel';
 
 function App() {
   return (
-    <div className="relative w-full min-h-screen">
+    <div className="relative w-full min-h-screen bg-white">
       
-      {/* 1. Video de fondo */}
+      {/* 1. Video de fondo Global (Se queda fijo atrás) */}
       <div className="fixed inset-0 z-0 bg-white">
         <video 
           autoPlay loop muted playsInline
@@ -16,12 +17,12 @@ function App() {
         </video>
       </div>
 
-      {/* 2. Capa de Contenido */}
+      {/* 2. Contenido que hace Scroll (Navbar + Secciones) */}
       <div className="relative z-10 w-full flex flex-col">
         <Navbar />
         <Hero />
-        {/* Aquí agregamos la nueva sección */}
         <ValuePropositions />
+        <ProductCarousel />
       </div>
 
     </div>
