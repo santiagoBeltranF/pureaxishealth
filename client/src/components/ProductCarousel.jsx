@@ -7,7 +7,6 @@ export default function ProductCarousel() {
   const [scrollLeft, setScrollLeft] = useState(0);
 
   // --- CONFIGURACIÓN MANUAL DE TUS PRODUCTOS ---
-  // Aquí puedes cambiar el orden y el nombre de la imagen (.jpg o .png)
   const productsList = [
     { id: 1, img: "/skin.jpg" },
     { id: 2, img: "/glutathione.jpg" },
@@ -15,7 +14,7 @@ export default function ProductCarousel() {
     { id: 4, img: "/lipo-slinm-shot.jpg" },
     { id: 5, img: "/recovery.jpg" },
     { id: 6, img: "/compounded-retatrutide.jpg" },
-    { id: 7, img: "performance.jpg" },
+    { id: 7, img: "/performance.jpg" }, // Corregido el '/' inicial
     { id: 8, img: "/adipotide.jpg" },
     { id: 9, img: "/weight.jpg" },
     { id: 10, img: "/bpc-157.jpg" },
@@ -69,9 +68,18 @@ export default function ProductCarousel() {
   };
 
   return (
-    <section className="bg-black py-16 relative z-20 overflow-hidden select-none">
+    <section 
+      className="relative py-20 z-20 overflow-hidden select-none bg-cover bg-center"
+      /* AQUÍ PONES TU IMAGEN DE FONDO */
+      style={{ backgroundImage: "url('/fondo-carrusel.jpg')" }} 
+    >
       
-      <div className="max-w-[1850px] mx-auto relative px-10 md:px-16">
+      {/* CAPA OSCURA (OVERLAY): 
+          Esto hace que el fondo se vea negro/oscuro pero deje ver la imagen sutilmente. 
+          Puedes cambiar 'bg-black/70' por 'bg-black/40' si quieres que la imagen se vea más clara. */}
+      <div className="absolute inset-0 bg-black/80 z-0"></div>
+
+      <div className="max-w-[1850px] mx-auto relative px-10 md:px-16 z-10">
         
         {/* FLECHAS */}
         <button onClick={() => scrollByButton('left')} className="absolute left-2 md:left-4 top-1/2 -translate-y-1/2 z-40 text-[#cba864] hover:scale-110 transition-transform">
@@ -94,9 +102,8 @@ export default function ProductCarousel() {
           {products.map((p, index) => (
             <div 
               key={`${p.id}-${index}`} 
-              className="flex-shrink-0 w-[283px] h-[283px] rounded-[30px] relative overflow-hidden shadow-2xl border border-white/5 bg-[#e5e7eb]"
+              className="flex-shrink-0 w-[283px] h-[283px] rounded-[30px] relative overflow-hidden shadow-2xl border border-white/10 bg-[#e5e7eb]"
             >
-              {/* SOLO LA IMAGEN, SIN ETIQUETAS DE TEXTO */}
               <div 
                 className="w-full h-full bg-cover bg-center transition-transform duration-500 hover:scale-105" 
                 style={{ backgroundImage: `url('${p.img}')` }}

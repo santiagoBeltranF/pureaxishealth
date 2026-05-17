@@ -1,31 +1,24 @@
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
-import Hero from './components/Hero';
-import ValuePropositions from './components/ValuePropositions';
-import ProductCarousel from './components/ProductCarousel';
+import Footer from './components/Footer';
+import Home from './pages/Home';
+import Peptides from './pages/Peptides';
 
 function App() {
   return (
-    <div className="relative w-full min-h-screen bg-white">
-      
-      {/* 1. Video de fondo Global (Se queda fijo atrás) */}
-      <div className="fixed inset-0 z-0 bg-white">
-        <video 
-          autoPlay loop muted playsInline
-          className="w-full h-full object-cover brightness-110 opacity-75"
-        >
-          <source src="/background-video.mp4" type="video/mp4" />
-        </video>
-      </div>
-
-      {/* 2. Contenido que hace Scroll (Navbar + Secciones) */}
-      <div className="relative z-10 w-full flex flex-col">
+    <Router>
+      <div className="relative w-full min-h-screen">
+        {/* El Navbar siempre estará arriba */}
         <Navbar />
-        <Hero />
-        <ValuePropositions />
-        <ProductCarousel />
-      </div>
+        
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/peptides" element={<Peptides />} />
+        </Routes>
 
-    </div>
+        <Footer />
+      </div>
+    </Router>
   );
 }
 

@@ -1,7 +1,7 @@
 import { useState } from 'react';
+import { Link } from 'react-router-dom'; // IMPORTANTE: Importamos Link
 
 export default function Navbar() {
-  // Estado para controlar si el menú móvil está abierto o cerrado
   const [isOpen, setIsOpen] = useState(false);
 
   return (
@@ -10,44 +10,41 @@ export default function Navbar() {
       {/* BARRA PRINCIPAL */}
       <div className="flex items-center justify-between px-6 md:px-16 py-4 w-full">
         
-        {/* 1. Logo (Izquierda) */}
-        <div className="flex items-center">
+        {/* 1. Logo (Ahora es un Link que te lleva al Home) */}
+        <Link to="/" className="flex items-center">
           <img 
             src="/PNG-LOGO-SMALL-1.png" 
             alt="Logo" 
             className="h-20 w-20 md:h-40 md:w-40 object-contain" 
           />
-        </div>
+        </Link>
 
         {/* 2. Centro: Menú Hamburguesa (Móvil) / Enlaces (Desktop) */}
         <div className="flex items-center justify-center">
           
-          {/* Botón Hamburguesa (Solo visible en pantallas pequeñas) */}
           <button 
             className="lg:hidden text-[#1a2e3a] p-2 focus:outline-none"
             onClick={() => setIsOpen(!isOpen)}
           >
             {isOpen ? (
-              // Ícono de "X" cuando el menú está abierto
               <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
               </svg>
             ) : (
-              // Ícono de Hamburguesa cuando está cerrado
               <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
               </svg>
             )}
           </button>
 
-          {/* Enlaces de navegación (Solo visibles en Desktop) */}
+          {/* Enlaces con <Link> para navegación instantánea */}
           <div className="hidden lg:flex space-x-8 xl:space-x-12 text-[#1a2e3a] font-bold text-lg xl:text-xl">
-            <a href="#" className="hover:text-blue-900 transition">Home</a>
-            <a href="#" className="hover:text-blue-900 transition">Peptides</a>
-            <a href="#" className="hover:text-blue-900 transition">503 A & 503B</a>
-            <a href="#" className="hover:text-blue-900 transition">Exosome & Stem Cell</a>
-            <a href="#" className="hover:text-blue-900 transition">About Us</a>
-            <a href="#" className="hover:text-blue-900 transition">Store</a>
+            <Link to="/" className="hover:text-blue-900 transition">Home</Link>
+            <Link to="/peptides" className="hover:text-blue-900 transition">Peptides</Link>
+            <Link to="#" className="hover:text-blue-900 transition">503 A & 503B</Link>
+            <Link to="#" className="hover:text-blue-900 transition">Exosome & Stem Cell</Link>
+            <Link to="#" className="hover:text-blue-900 transition">About Us</Link>
+            <Link to="#" className="hover:text-blue-900 transition">Store</Link>
           </div>
         </div>
 
@@ -65,16 +62,15 @@ export default function Navbar() {
         
       </div>
 
-      {/* MENÚ DESPLEGABLE (MÓVIL) */}
-      {/* Usamos max-h para que tenga una animación de caída suave */}
+      {/* MENÚ DESPLEGABLE (MÓVIL) - También con <Link> */}
       <div className={`lg:hidden transition-all duration-300 ease-in-out overflow-hidden ${isOpen ? 'max-h-96 border-b border-gray-100 shadow-xl' : 'max-h-0'}`}>
         <div className="flex flex-col items-center bg-white/95 backdrop-blur-md py-6 space-y-6 text-[#1a2e3a] font-bold text-lg">
-          <a href="#" className="hover:text-[#cba864] transition">Home</a>
-          <a href="#" className="hover:text-[#cba864] transition">Peptides</a>
-          <a href="#" className="hover:text-[#cba864] transition">503 A & 503B</a>
-          <a href="#" className="hover:text-[#cba864] transition">Exosome & Stem Cell</a>
-          <a href="#" className="hover:text-[#cba864] transition">About Us</a>
-          <a href="#" className="hover:text-[#cba864] transition">Store</a>
+          <Link onClick={() => setIsOpen(false)} to="/" className="hover:text-[#cba864] transition">Home</Link>
+          <Link onClick={() => setIsOpen(false)} to="/peptides" className="hover:text-[#cba864] transition">Peptides</Link>
+          <Link onClick={() => setIsOpen(false)} to="#" className="hover:text-[#cba864] transition">503 A & 503B</Link>
+          <Link onClick={() => setIsOpen(false)} to="#" className="hover:text-[#cba864] transition">Exosome & Stem Cell</Link>
+          <Link onClick={() => setIsOpen(false)} to="#" className="hover:text-[#cba864] transition">About Us</Link>
+          <Link onClick={() => setIsOpen(false)} to="#" className="hover:text-[#cba864] transition">Store</Link>
         </div>
       </div>
 
